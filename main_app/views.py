@@ -13,6 +13,9 @@ def about(request):
 def snakes_index(request):
    return render(request, 'snakes/index.html', { 'snakes': snakes })
 
+def home(request):
+   return render(request, 'home.html')
+
 
 class Snake:  # Note that parens are optional if not inheriting from another class
    def __init__(self, name, breed, description, age):
