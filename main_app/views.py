@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Snake
 
 # Create your views here.
@@ -22,4 +22,12 @@ def snakes_detail(request, snake_id):
 class SnakeCreate(CreateView):
    model = Snake
    fields = '__all__'
+   success_url = '/snakes/'
+   
+class SnakeUpdate(UpdateView):
+   model = Snake
+   fields = ['breed', 'description', 'age']
+   
+class SnakeDelete(DeleteView):
+   model = Snake
    success_url = '/snakes/'
