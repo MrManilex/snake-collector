@@ -49,6 +49,11 @@
       class="subsection-content"
       autocomplete= 'off'
     >
+    {% if snake.fed_for_today %}
+        <p class="fed">{{snake.name}} has been fed all their meals for today!</p>
+      {% else %}
+        <p class="unfed">{{snake.name}} might be hungry!</p>
+      {% endif %}
       {% csrf_token %}
       {{ feeding_form.as_p }}
       <button type="submit" class="btn submit">Add Feeding</button>

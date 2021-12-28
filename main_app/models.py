@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 class Snake(models.Model):
    name = models.CharField(max_length=100)
@@ -10,6 +11,9 @@ class Snake(models.Model):
    def __str__(self):
       return self.name
 
+   def fed_for_today(self):
+      return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
+   
    def get_absolute_url(self):
       return reverse("snakes_detail", kwargs={"snake_id": self.id})
 
