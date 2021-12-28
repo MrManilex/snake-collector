@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/snake-index.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>Snake List</h1>
+  {% comment %} <img src="{% static 'images/cool-snake.svg' %}" alt="A cool snake" />
+  <img src="{% static 'images/happy-snake.svg' %}" alt="A happy snake" />
+  <img src="{% static 'images/teacup-snake.svg' %}" alt="A snake in a teacup" />
+  <img src="{% static 'images/snake-in-box.svg' %}" alt="A snake in a box" /> {% endcomment %}
+</section>
+
+<section class="card-container">
+  {% for snake in snakes %}
+    <div class="card">
+      <div class="card-content">
+        <div class="card-img-container">
+          {% comment %} <img 
+            src="{% static 'images/sk8r-boi-snake.svg' %}" 
+            alt="A skater boy snake"
+          > {% endcomment %}
+        </div>
+        <h2 class="card-title">{{ snake.name }}</h2>
+        {% if snake.age > 0 %}
+          <p>A {{ snake.age }} year old {{ snake.breed }}</p>
+        {% else %}
+          <p>A {{ snake.breed }} kitten.</p>
+        {% endif %}
+        <p><small>{{ snake.description }}</small></p>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
