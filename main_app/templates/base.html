@@ -33,8 +33,9 @@
    </div>
    <nav>
       <ul>
-         <li><a href="/snakes">All Snakes</a></li>
-         <li><a href="/about">About</a></li>
+         <li><a href="{% url 'snakes_index' %}">All Snakes</a></li>
+         <li><a href="{% url 'snakes_create' %}">Add a Snake</a></li>
+         <li><a href="{% url 'about' %}">About</a></li>
       </ul>
       </nav>
    </header>
