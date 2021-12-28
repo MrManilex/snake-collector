@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
+from django.views.generic import ListView, DetailView
 from main_app.forms import FeedingForm
-from .models import Snake
+from .models import Snake, Toy
 
 # Create your views here.
 
@@ -43,3 +43,21 @@ class SnakeUpdate(UpdateView):
 class SnakeDelete(DeleteView):
    model = Snake
    success_url = '/snakes/'
+   
+class ToyCreate(CreateView):
+   model = Toy
+   fields = '__all__'
+   
+class ToyList(ListView):
+   model = Toy
+
+class ToyDetail(DetailView):
+   model = Toy
+   
+class ToyUpdate(UpdateView):
+   model = Toy
+   fields = ['name', 'color']
+
+class ToyDelete(DeleteView):
+   model = Toy
+   success_url = '/toys/'
