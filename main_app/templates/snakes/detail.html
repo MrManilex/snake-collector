@@ -77,6 +77,33 @@
       <p class="subsection-content">{{snake.name}} has never been fed 😟</p>
     {% endif %}
   </section>
+  <section class="toys">
+    <div class="subsection-title">
+      <h2>Toys</h2>
+    </div>
+    <h3>{{ snake.name }}'s Toys</h3>
+    <div class="subsection-content">
+      {% if snake.toys.count %}
+        {% for toy in snake.toys.all %}
+          <div class="toy-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ toy.color }}"
+            ></div>
+            <a href="{% url 'toys_detail' toy.id %}">
+              <p>A {{ toy.color }} {{ toy.name }}</p>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-toys">{{snake.name}} doesn't have any toys 😞</p>
+      {% endif %}
+    </div>
+    <h3>Available Toys</h3>
+    <div class="subsection-content">
+      {% comment %} We'll display available toys here {% endcomment %}
+    </div>
+  </section>
 </div>
 
 {% endblock %}
