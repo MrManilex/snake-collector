@@ -1,33 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Snake
 
 # Create your views here.
 
-
 def home(request):
-   return render(request, 'base.html')
+   return render(request, 'home.html')
 
 def about(request):
    return render(request, 'about.html')
 
 def snakes_index(request):
+   snakes = Snake.objects.all()
    return render(request, 'snakes/index.html', { 'snakes': snakes })
 
-def home(request):
-   return render(request, 'home.html')
+def snakes_detail(request, snake_id):
+   snake = Snake.objects.get(id=snake_id)
+   return render(request, 'snakes/detail.html', { 'snake': snake })
 
-
-class Snake:  # Note that parens are optional if not inheriting from another class
-   def __init__(self, name, breed, description, age):
-      self.name = name
-      self.breed = breed
-      self.description = description
-      self.age = age
-
-
-snakes = [
-   Snake('Lolo', 'tabby', 'Kinda rude.', 3),
-   Snake('Sachi', 'tortoiseshell', 'Looks like a turtle.', 0),
-   Snake('Fancy', 'bombay', 'Happy fluff ball.', 4),
-   Snake('Bonk', 'selkirk rex', 'Meows loudly.', 6)
-]

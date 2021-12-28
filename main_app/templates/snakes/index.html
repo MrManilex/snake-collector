@@ -18,21 +18,23 @@
 <section class="card-container">
   {% for snake in snakes %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          {% comment %} <img 
-            src="{% static 'images/sk8r-boi-snake.svg' %}" 
-            alt="A skater boy snake"
-          > {% endcomment %}
+      <a href="/snakes/{{ snake.id }}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img 
+              src="{% static 'images/sk8r-boi-snake.svg' %}" 
+              alt="A skater boy snake"
+            >
+          </div>
+          <h2 class="card-title">{{ snake.name }}</h2>
+          {% if snake.age > 0 %}
+            <p>A {{ snake.age }} year old {{ snake.breed }}</p>
+          {% else %}
+            <p>A {{ snake.breed }} snek.</p>
+          {% endif %}
+          <p><small>{{ snake.description }}</small></p>
         </div>
-        <h2 class="card-title">{{ snake.name }}</h2>
-        {% if snake.age > 0 %}
-          <p>A {{ snake.age }} year old {{ snake.breed }}</p>
-        {% else %}
-          <p>A {{ snake.breed }} kitten.</p>
-        {% endif %}
-        <p><small>{{ snake.description }}</small></p>
-      </div>
+      </a>
     </div>
   {% endfor %}
 </section>
