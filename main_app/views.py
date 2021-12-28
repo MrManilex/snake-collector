@@ -19,9 +19,10 @@ def snakes_index(request):
 
 def snakes_detail(request, snake_id):
    snake = Snake.objects.get(id=snake_id)
+   toys_snake_doesnt_have = Toy.objects.exclude(id__in = snake.toys.all().values_list('id'))
    feeding_form = FeedingForm()
    return render(request, 'snakes/detail.html', { 
-      'snake': snake, 'feeding_form': feeding_form })
+      'snake': snake, 'feeding_form': feeding_form, 'toys': toys_snake_doesnt_have })
 
 def add_feeding(request, snake_id):
    form = FeedingForm(request.POST)
@@ -29,6 +30,10 @@ def add_feeding(request, snake_id):
       new_feeding = form.save(commit=False)
       new_feeding.snake_id = snake_id
       new_feeding.save()
+   return redirect('snakes_detail', snake_id=snake_id)
+
+def assoc_toy(request, snake_id, toy_id):
+   Snake.objects.get(id=snake_id).toys.add(toy_id)
    return redirect('snakes_detail', snake_id=snake_id)
 
 class SnakeCreate(CreateView):
