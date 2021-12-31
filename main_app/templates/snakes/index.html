@@ -18,6 +18,7 @@
         <div class="card-content">
           <div class="card-img-container">
             {% comment %} put default image here {% endcomment %}
+            {% comment %} <img src="{% static 'images/snek-default.jpg' %}" alt="snek-default"> {% endcomment %}
           </div>
           <h2 class="card-title">{{ snake.name }}</h2>
           {% if snake.age > 0 %}
